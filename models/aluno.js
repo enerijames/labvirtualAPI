@@ -30,7 +30,7 @@ const alunoSchema = new Schema({
         type: String,
         required: true,
     },
-    image: {
+    imageUrl: {
         type: String,
         required: false,
     },
@@ -38,10 +38,10 @@ const alunoSchema = new Schema({
         type: Array,
         required: false,
     },
-    tarefas: {
+    tarefas: [{
         type: Schema.Types.ObjectId,
         ref: 'Tarefa'
-    },
+    }],
     codigoTurma: {
         type: String,
         required: false,

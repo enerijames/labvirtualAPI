@@ -11,7 +11,7 @@ const router = express.Router();
 // GET /feed/posts
 router.get('/loadHome', isAuth, indexController.loadHome);
 
-router.post('/criarTarefa', indexController.criarTarefa);
+router.post('/criarTarefa', isAuth, indexController.criarTarefa);
 
 router.put('/editConta', isAuth, indexController.editConta);
 

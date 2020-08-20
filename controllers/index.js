@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator/check')
 
 const Aluno = require('../models/aluno');
+const Tarefa = require('../models/tarefa');
 
 
 exports.loadHome = (req, res, next) => {
@@ -14,15 +15,30 @@ exports.loadHome = (req, res, next) => {
     })
     .catch(err => {
         const error = new Error
-        error.statusCode = 404;
+        error.statusCode = 500;
         throw error
     })
 }
 
 exports.criarTarefa = (req, res, next) => {
-    alunoId = req.userId;
+    const alunoId = req.userId;
+    const content = req.body.content
+    const type = req.body.type
 
-    console.log(req.body)
+    console.log(alunoId.toString())
+
+    const tarefa = new Tarefa({
+        content: content,
+        type: type,
+        creator: alunoId.toString(),
+    })
+
+    return tarefa.save()
+    .then(result => {
+        res.status(200).json({message: 'Anotação Criada!', anotacao: result})
+    })
+    .catch(err => console.log(err))
+
 }
 
 exports.editConta = (req, res, next) => {

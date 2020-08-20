@@ -9,6 +9,11 @@ const tarefaSchema = new Schema({
     content: {
         type: String,
         required: true,
+    },
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'Aluno',
+        required: true
     }
 })
 
